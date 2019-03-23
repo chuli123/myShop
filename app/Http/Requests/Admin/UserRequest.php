@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\CommonRequest;
 
-class UserRequest extends FormRequest
+class UserRequest extends CommonRequest
 {
     public function rules()
     {
@@ -12,6 +12,15 @@ class UserRequest extends FormRequest
             'phone' => 'string',
             'email' => 'string',
             'password' => 'required|same:repassword',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.require' => '用户名是必填的',
+            'password' => '密码是比填的',
+
         ];
     }
 }

@@ -57,10 +57,10 @@
                 <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>
                 <td class="td-manage">
-                    <a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
+                    <a title="编辑"  onclick="x_admin_show('编辑','{{ url("/admin/users/edit/$user->id") }}',600,400)" href="javascript:;">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
-                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                    <a title="删除" onclick="member_del(this,'{{ $user->id }}')" href="javascript:;">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
                 </td>
@@ -94,8 +94,22 @@
         function member_del(obj,id){
             layer.confirm('确认要删除吗？',function(index){
                 //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!',{icon:1,time:1000});
+                $.ajax({
+                    url: '/admin/users/delete/'+id,
+                    method: 'get',
+                    success: function (res) {
+                        layer.alert(res.msg, {icon: 6},function () {
+                            $(obj).parents("tr").remove();
+                            layer.msg('已删除!',{icon:1,time:1000});
+                        });
+                    },
+                    error : function() {
+                        layer.open({
+                            type: 0,
+                            content: '修改失败' //这里content是一个普通的String
+                        });
+                    }
+                });
             });
         }
 

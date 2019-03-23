@@ -15,10 +15,9 @@
                         </a>
                     </li >
                     <li date-refresh="1">
-                        <a _href="member-del.html">
+                        <a href="javascript:;" _href="{{ url('/admin/users_level/list') }}">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员删除</cite>
-
+                            <cite>会员等级</cite>
                         </a>
                     </li>
                 </ul>
@@ -46,9 +45,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="cate.html">
+                        <a href="javascript:;" _href="{{ url('/admin/goods/category/list') }}">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>多级分类</cite>
+                            <cite>商品分类</cite>
                         </a>
                     </li >
                 </ul>
